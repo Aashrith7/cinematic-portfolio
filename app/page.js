@@ -13,7 +13,6 @@ export default function Home() {
         height: '100vh',
         overflowY: 'scroll',
         scrollSnapType: 'y mandatory',
-        scrollBehavior: 'smooth',
       }}
     >
       <VideoIntro heroRef={heroRef} />

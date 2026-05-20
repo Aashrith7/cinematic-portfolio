@@ -48,7 +48,10 @@ const HeroSection = forwardRef(function HeroSection(props, ref) {
     )
     observer.observe(section)
 
-    return () => observer.disconnect()
+    return () => {
+      observer.disconnect()
+      tl.kill()
+    }
   }, [])
 
   return (

@@ -3,12 +3,13 @@ const timelineMock = {
   to: jest.fn().mockReturnThis(),
   play: jest.fn().mockReturnThis(),
   paused: jest.fn().mockReturnThis(),
+  kill: jest.fn(),
 }
 
 const gsap = {
   registerPlugin: jest.fn(),
-  fromTo: jest.fn(),
-  to: jest.fn(),
+  fromTo: jest.fn(() => ({ kill: jest.fn() })),
+  to: jest.fn(() => ({ kill: jest.fn() })),
   set: jest.fn(),
   timeline: jest.fn(() => timelineMock),
 }

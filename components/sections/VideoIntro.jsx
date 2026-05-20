@@ -8,7 +8,8 @@ export default function VideoIntro({ heroRef }) {
 
   useEffect(() => {
     if (!videoRef.current) return
-    gsap.fromTo(videoRef.current, { opacity: 0 }, { opacity: 1, duration: 0.8, ease: 'power2.out' })
+    const tween = gsap.fromTo(videoRef.current, { opacity: 0 }, { opacity: 1, duration: 0.8, ease: 'power2.out' })
+    return () => tween.kill()
   }, [])
 
   function handleEnded() {
