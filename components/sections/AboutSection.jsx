@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { gsap } from '@/lib/gsap'
+import { FaGithub, FaLinkedinIn, FaMedium, FaInstagram } from 'react-icons/fa'
 import styles from '@/styles/sections/AboutSection.module.css'
 
 const BIO =
@@ -11,10 +12,18 @@ const BIO =
 
 const TABS = ['I AM', 'WHO I AM']
 
+const SOCIALS = [
+  { Icon: FaGithub,    href: 'https://github.com/VaibhavKhushalani',    label: 'GitHub'    },
+  { Icon: FaLinkedinIn, href: 'https://linkedin.com/in/vaibhav-khushalani', label: 'LinkedIn'  },
+  { Icon: FaMedium,    href: 'https://medium.com/@vaibhavkhush124',      label: 'Medium'    },
+  { Icon: FaInstagram, href: 'https://instagram.com/vaibhav.khushalani', label: 'Instagram' },
+]
+
 export default function AboutSection() {
   const sectionRef  = useRef(null)
   const photoRef    = useRef(null)
   const contentRef  = useRef(null)
+  const socialsRef  = useRef(null)
   const intervalRef = useRef(null)
   const started     = useRef(false)
 
@@ -26,8 +35,11 @@ export default function AboutSection() {
     const section = sectionRef.current
     if (!section) return
 
+    // Initial hidden states
     gsap.set(photoRef.current,   { opacity: 0, x: -50 })
     gsap.set(contentRef.current, { opacity: 0, y:  40 })
+    const socialIcons = socialsRef.current?.querySelectorAll('a') ?? []
+    gsap.set(socialIcons, { opacity: 0, y: 20 })
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -40,6 +52,11 @@ export default function AboutSection() {
         })
         gsap.to(contentRef.current, {
           opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', delay: 0.15,
+        })
+        // Social icons stagger
+        gsap.to(socialIcons, {
+          opacity: 1, y: 0, duration: 0.5, ease: 'power2.out',
+          stagger: 0.1, delay: 0.5,
         })
 
         // Typewriter
@@ -66,7 +83,7 @@ export default function AboutSection() {
   return (
     <section ref={sectionRef} className={styles.section}>
 
-      {/* ── Left: photo + signature ───────────────── */}
+      {/* ── Left: photo + signature + socials ───────── */}
       <div ref={photoRef} className={styles.photoCol}>
         <div className={styles.photoFrame}>
           <Image
@@ -76,10 +93,27 @@ export default function AboutSection() {
             className={styles.photoImg}
           />
         </div>
+
         <p className={styles.signature}>Vaibhav</p>
+
+        {/* Social icons */}
+        <div ref={socialsRef} className={styles.socials}>
+          {SOCIALS.map(({ Icon, href, label }) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={label}
+              className={styles.socialLink}
+            >
+              <Icon />
+            </a>
+          ))}
+        </div>
       </div>
 
-      {/* ── Right: content ───────────────────────── */}
+      {/* ── Right: content ───────────────────────────── */}
       <div ref={contentRef} className={styles.content}>
 
         {/* Tabs */}

@@ -133,3 +133,32 @@
 .emailBtn:hover {
   background: #e8e8e8 !important;
 }
+
+/* ── Social icons ───────────────────────────── */
+
+.socials {
+  display: flex;
+  gap: 0.9rem;
+  margin-top: 1.25rem;
+  align-items: center;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background: #f2f2f2;
+  color: #333;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background 0.22s ease, color 0.22s ease, transform 0.22s ease;
+}
+
+.socialLink:hover {
+  background: var(--accent);
+  color: #fff;
+  transform: translateY(-4px) scale(1.12);
+}
