@@ -70,7 +70,7 @@ export default function AboutSection() {
       <div ref={photoRef} className={styles.photoCol}>
         <div className={styles.photoFrame}>
           <Image
-            src="/assets/hero.png"
+            src="/assets/about.png"
             alt="Vaibhav Khushalani"
             fill
             className={styles.photoImg}
