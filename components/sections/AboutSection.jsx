@@ -8,7 +8,7 @@ import { FaGithub, FaLinkedinIn, FaMedium, FaInstagram } from 'react-icons/fa'
 import styles from '@/styles/sections/AboutSection.module.css'
 
 const BIO =
-  `Full-Stack Engineer with 4+ years of experience building scalable web and AI-powered systems using MERN, Next.js, and Python. I specialize in designing microservices, high-performance APIs, and production-ready architectures that handle real-world scale. From building data pipelines processing 100k+ SKUs to developing AI-driven platforms using FastAPI, LangChain, and vector databases — my focus is always on performance, scalability, and clean system design. I've worked across end-to-end product development — from frontend architecture and microfrontends to backend systems, caching layers, and asynchronous job processing using Redis and queues. I don't just build features — I build systems that scale, perform, and deliver measurable impact.`
+  `Full-Stack Engineer with 4+ years building scalable web and AI-powered systems using MERN, Next.js, and Python. I specialize in microservices, high-performance APIs, and production-ready architectures that handle real-world scale. From data pipelines processing 100k+ SKUs to AI-driven platforms using FastAPI, LangChain, and vector databases, my focus is always on performance and clean system design. I've worked across the full product stack, from frontend architecture and microfrontends to backend systems, caching layers, and async job processing with Redis. I build systems that scale, perform, and deliver real impact.`
 
 const TABS = ['I AM', 'WHO I AM']
 
