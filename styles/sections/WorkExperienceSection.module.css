@@ -3,6 +3,7 @@
   position: sticky;
   top: 0;
   height: 100vh;
+  z-index: 4;
   background: #0d0d0d;
   overflow: hidden;
 }
