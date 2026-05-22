@@ -10,10 +10,8 @@ import WorkExperienceSection from '@/components/sections/WorkExperienceSection'
 import profile               from '@/data/profile.json'
 
 // Snap: 0=video, 1=hero, 2=about. Work exp (3-5) uses free scroll.
-const WORK_SLIDES   = profile.experience.length       // 3
-const TOTAL         = 3 + WORK_SLIDES                 // 6
-const WORK_FIRST    = 3
-const WORK_LAST     = TOTAL - 1                       // 5
+const WORK_SLIDES   = profile.experience.length
+const TOTAL         = 3 + WORK_SLIDES
 
 export default function Home() {
   const mainRef  = useRef(null)
@@ -42,48 +40,18 @@ export default function Home() {
 
     function onWheel(e) {
       e.preventDefault()
-      const idx = idxRef.current
-      const goingDown = e.deltaY > 0
-
-      if (idx >= WORK_FIRST && idx <= WORK_LAST) {
-        // At work-exp start scrolling up → snap back to About
-        if (!goingDown && el.scrollTop <= WORK_FIRST * window.innerHeight + 50) {
-          if (!busyRef.current) goTo(WORK_FIRST - 1)
-          return
-        }
-        // Free scroll: wheel delta drives ScrollTrigger directly
-        el.scrollTop = Math.max(
-          WORK_FIRST * window.innerHeight,
-          Math.min(WORK_LAST * window.innerHeight, el.scrollTop + e.deltaY)
-        )
-        return
-      }
-
       if (busyRef.current) return
-      goTo(idx + (goingDown ? 1 : -1))
+      const goingDown = e.deltaY > 0
+      goTo(idxRef.current + (goingDown ? 1 : -1))
     }
 
     let touchY = 0
     function onTouchStart(e) { touchY = e.touches[0].clientY }
     function onTouchEnd(e) {
-      const idx = idxRef.current
       const dy = touchY - e.changedTouches[0].clientY
       if (Math.abs(dy) < 40) return
-
-      if (idx >= WORK_FIRST && idx <= WORK_LAST) {
-        if (dy < 0 && el.scrollTop <= WORK_FIRST * window.innerHeight + 50) {
-          if (!busyRef.current) goTo(WORK_FIRST - 1)
-          return
-        }
-        el.scrollTop = Math.max(
-          WORK_FIRST * window.innerHeight,
-          Math.min(WORK_LAST * window.innerHeight, el.scrollTop + dy * 3)
-        )
-        return
-      }
-
       if (busyRef.current) return
-      goTo(idx + (dy > 0 ? 1 : -1))
+      goTo(idxRef.current + (dy > 0 ? 1 : -1))
     }
 
     function onScroll() {
