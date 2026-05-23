@@ -28,6 +28,8 @@
 
   /* Type scale */
   --hero-name-size: clamp(4.5rem, 13vw, 12rem);
+  --text-body:  clamp(0.9rem, 1.2vw, 1.05rem);
+  --text-small: 0.72rem;
   --hero-role-size: clamp(0.75rem, 1.2vw, 0.875rem);
 
   /* ─── shadcn var bridge (maps to brand tokens) ── */
@@ -58,21 +60,9 @@ body {
   font-family: var(--font-geist-sans), Arial, sans-serif;
 }
 
-/* ─── Custom scrollbar ───────────────────────────────────── */
-main::-webkit-scrollbar {
-  width: 3px;
-}
-main::-webkit-scrollbar-track {
-  background: transparent;
-}
-main::-webkit-scrollbar-thumb {
-  background: var(--accent);
-  border-radius: 2px;
-}
-main {
-  scrollbar-width: thin;
-  scrollbar-color: var(--accent) transparent;
-}
+/* ─── Hide scrollbar ─────────────────────────────────────── */
+main::-webkit-scrollbar { display: none; }
+main { scrollbar-width: none; -ms-overflow-style: none; }
 
 @media (max-width: 767px) {
   :root {
