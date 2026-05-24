@@ -104,7 +104,7 @@ export default function WorkExperienceSection() {
           src="/assets/work-experience.webp"
           alt=""
           fill
-          quality={80}
+          quality={100}
           sizes="100vw"
           className={styles.bgImgEl}
         />

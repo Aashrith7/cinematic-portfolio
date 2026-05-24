@@ -130,7 +130,7 @@ export default function PublicationsFooterSection() {
       const H = sticky.offsetHeight
 
       renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false })
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5))
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
       renderer.setSize(W, H)
       renderer.setClearColor(0x000000, 0)
 
@@ -262,8 +262,8 @@ export default function PublicationsFooterSection() {
         gsap.set(interstitialRef.current, { opacity: interIn * (1 - interOut), pointerEvents: 'none' })
 
       } else {
-        // ── Phase 2: image shrinks full-width → centered (p 0.15 → 0.72) ──
-        const imgRaw = Math.max(0, Math.min(1, (p - 0.15) / 0.57))
+        // ── Phase 2: image shrinks full-width → centered (p 0.12 → 0.65) ──
+        const imgRaw = Math.max(0, Math.min(1, (p - 0.12) / 0.53))
         const imgP   = easeInOut(imgRaw)
 
         const startW  = vw
@@ -276,22 +276,23 @@ export default function PublicationsFooterSection() {
           gsap.set(imageOverlayRef.current, { opacity: 1 - imgP })
         }
 
-        // ── Interstitial: fade in after pub, fade out before footer ──
+        // ── Interstitial: fade in after pub, fade out before crossfade ──
         const interIn  = Math.max(0, Math.min(1, (p - 0.25) / 0.15))
-        const interOut = Math.max(0, Math.min(1, (p - 0.60) / 0.12))
+        const interOut = Math.max(0, Math.min(1, (p - 0.54) / 0.14))
         gsap.set(interstitialRef.current, { opacity: interIn * (1 - interOut), pointerEvents: 'none' })
 
-        // ── Phase 3: video crossfade + image fade (p 0.68 → 0.88) ──
-        const imgOpacity = 1 - Math.max(0, Math.min(1, (p - 0.68) / 0.20))
-        gsap.set(imageWrapRef.current, { width: w, x: centerX, opacity: imgOpacity })
+        // ── Phase 3: sine-eased crossfade image → video (p 0.65 → 0.92) ──
+        // Sine ease: both curves share same t so they are perceptually matched
+        const xfadeRaw = Math.max(0, Math.min(1, (p - 0.65) / 0.27))
+        const xfade    = 0.5 - 0.5 * Math.cos(Math.PI * xfadeRaw)
 
-        const videoFade = Math.max(0, Math.min(1, (p - 0.65) / 0.22))
-        vidUni.uOpacity.value = videoFade
+        gsap.set(imageWrapRef.current, { width: w, x: centerX, opacity: 1 - xfade })
+        vidUni.uOpacity.value = xfade
 
-        if (videoFade > 0.04 && !videoPlaying) {
+        if (xfade > 0.04 && !videoPlaying) {
           videoPlaying = true
           videoEl.play().catch(() => {})
-        } else if (videoFade <= 0.04 && videoPlaying) {
+        } else if (xfade <= 0.04 && videoPlaying) {
           videoPlaying = false
           videoEl.pause()
           videoEl.currentTime = 0
@@ -336,6 +337,7 @@ export default function PublicationsFooterSection() {
             src="/assets/footer-mobile.webp"
             alt=""
             fill
+            quality={100}
             className={styles.mobileFooterBgImg}
             sizes="100vw"
             priority={false}
@@ -351,6 +353,7 @@ export default function PublicationsFooterSection() {
             src="/assets/footer.png"
             alt=""
             fill
+            quality={100}
             className={styles.imageEl}
             sizes="(max-width: 767px) 100vw, 50vw"
             priority={false}
