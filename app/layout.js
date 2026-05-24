@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono, Baloo_2, Dancing_Script } from "next/font/google";
 import "./globals.css";
 import Cursor from "@/components/ui/Cursor";
+import { SITE_URL } from '@/lib/siteConfig';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,7 +26,7 @@ const dancing = Dancing_Script({
 });
 
 export const metadata = {
-  metadataBase: new URL('https://vaibhavkhushalani.dev'),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: 'Vaibhav Khushalani — Full Stack Developer',
     template: '%s | Vaibhav Khushalani',
@@ -44,12 +45,12 @@ export const metadata = {
     'Portfolio',
     'India',
   ],
-  authors: [{ name: 'Vaibhav Khushalani', url: 'https://vaibhavkhushalani.dev' }],
+  authors: [{ name: 'Vaibhav Khushalani', url: SITE_URL }],
   creator: 'Vaibhav Khushalani',
   openGraph: {
     type: 'website',
     locale: 'en_IN',
-    url: 'https://vaibhavkhushalani.dev',
+    url: SITE_URL,
     siteName: 'Vaibhav Khushalani',
     title: 'Vaibhav Khushalani — Full Stack Developer',
     description:
@@ -81,7 +82,7 @@ export const metadata = {
     },
   },
   alternates: {
-    canonical: 'https://vaibhavkhushalani.dev',
+    canonical: SITE_URL,
   },
 };
 
@@ -99,7 +100,7 @@ export default function RootLayout({ children }) {
               '@context': 'https://schema.org',
               '@type': 'Person',
               name: 'Vaibhav Khushalani',
-              url: 'https://vaibhavkhushalani.dev',
+              url: SITE_URL,
               email: 'vaibhavkhush124@gmail.com',
               jobTitle: 'Full Stack Developer',
               sameAs: [

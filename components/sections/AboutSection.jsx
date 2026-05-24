@@ -3,14 +3,14 @@
 import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { gsap } from '@/lib/gsap'
-import { FaGithub, FaLinkedinIn, FaMedium, FaInstagram } from 'react-icons/fa'
+import { FaGithub, FaLinkedinIn, FaMedium, FaInstagram, FaYoutube } from 'react-icons/fa'
 import profile from '@/data/profile.json'
 import styles from '@/styles/sections/AboutSection.module.css'
 
 const BIO      = profile.bio
 const WHO_ITEMS = profile.whoAmI
 
-const ICON_MAP = { GitHub: FaGithub, LinkedIn: FaLinkedinIn, Medium: FaMedium, Instagram: FaInstagram }
+const ICON_MAP = { GitHub: FaGithub, LinkedIn: FaLinkedinIn, Medium: FaMedium, Instagram: FaInstagram, YouTube: FaYoutube }
 
 const SOCIALS = profile.socials.map(s => ({ Icon: ICON_MAP[s.label], href: s.href, label: s.label }))
 
@@ -20,7 +20,6 @@ export default function AboutSection() {
   const contentRef  = useRef(null)
   const socialsRef  = useRef(null)
   const intervalRef = useRef(null)
-  const started     = useRef(false)
 
   const [typed, setTyped] = useState(0)
   const [done,  setDone]  = useState(false)
@@ -29,48 +28,54 @@ export default function AboutSection() {
     const section = sectionRef.current
     if (!section) return
 
-    // Initial hidden states
-    gsap.set(photoRef.current,   { opacity: 0, x: -50 })
-    gsap.set(contentRef.current, { opacity: 0, y:  40 })
-    const socialIcons = socialsRef.current?.querySelectorAll('a') ?? []
-    gsap.set(socialIcons, { opacity: 0, y: 20 })
+    const scroller = document.querySelector('main')
+    if (!scroller) return
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting || started.current) return
-        started.current = true
+    let isActive = false
 
-        // Entrance animations
-        gsap.to(photoRef.current, {
-          opacity: 1, x: 0, duration: 0.9, ease: 'power3.out',
-        })
-        gsap.to(contentRef.current, {
-          opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', delay: 0.15,
-        })
-        // Social icons stagger
-        gsap.to(socialIcons, {
-          opacity: 1, y: 0, duration: 0.5, ease: 'power2.out',
-          stagger: 0.1, delay: 0.5,
-        })
-
-        // Typewriter
-        let i = 0
-        intervalRef.current = setInterval(() => {
-          i = Math.min(i + 6, BIO.length)
-          setTyped(i)
-          if (i >= BIO.length) {
-            clearInterval(intervalRef.current)
-            setDone(true)
-          }
-        }, 16)
-      },
-      { threshold: 0.15 },
-    )
-
-    observer.observe(section)
-    return () => {
-      observer.disconnect()
+    function resetAnim() {
       clearInterval(intervalRef.current)
+      gsap.killTweensOf(photoRef.current)
+      gsap.killTweensOf(contentRef.current)
+      const socialIcons = socialsRef.current?.querySelectorAll('a') ?? []
+      gsap.killTweensOf(socialIcons)
+      gsap.set(photoRef.current,   { opacity: 0, x: -50 })
+      gsap.set(contentRef.current, { opacity: 0, y:  40 })
+      gsap.set(socialIcons, { opacity: 0, y: 20 })
+      setTyped(0)
+      setDone(false)
+    }
+
+    function playAnim() {
+      resetAnim()
+      gsap.to(photoRef.current,   { opacity: 1, x: 0, duration: 0.9, ease: 'power3.out' })
+      gsap.to(contentRef.current, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', delay: 0.15 })
+      const socialIcons = socialsRef.current?.querySelectorAll('a') ?? []
+      gsap.to(socialIcons, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', stagger: 0.1, delay: 0.5 })
+
+      let i = 0
+      intervalRef.current = setInterval(() => {
+        i = Math.min(i + 6, BIO.length)
+        setTyped(i)
+        if (i >= BIO.length) {
+          clearInterval(intervalRef.current)
+          setDone(true)
+        }
+      }, 16)
+    }
+
+    resetAnim()
+
+    function onScroll() {
+      const inRange = Math.abs(scroller.scrollTop - section.offsetTop) < window.innerHeight * 0.5
+      if (inRange && !isActive)  { isActive = true;  playAnim() }
+      if (!inRange && isActive)  { isActive = false; resetAnim() }
+    }
+
+    scroller.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      clearInterval(intervalRef.current)
+      scroller.removeEventListener('scroll', onScroll)
     }
   }, [])
 
@@ -80,7 +85,7 @@ export default function AboutSection() {
       {/* ── Left: photo + signature + socials ───────── */}
       <div ref={photoRef} className={styles.photoCol}>
         <div className={styles.photoWrap}>
-          <div className={styles.photoFrame}>
+          <div className={styles.photoFrame} data-about-photo>
             <Image
               src="/assets/about.png"
               alt="Vaibhav Khushalani"

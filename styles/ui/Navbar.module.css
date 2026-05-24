@@ -33,20 +33,41 @@
 }
 
 .emailBtn {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--email-btn-bg);
-  color: var(--email-btn-text);
-  border-color: transparent;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.28);
   text-decoration: none;
+  transition: color 0.35s ease;
+}
+
+.emailBtn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.35s ease;
+  z-index: -1;
+}
+
+.emailBtn:hover {
+  color: #000;
+}
+
+.emailBtn:hover::after {
+  transform: scaleX(1);
 }
 
 /* ── Dark section mode (Work Experience) ────── */
 .darkMode {
-  --navbar-text:    rgba(255, 255, 255, 0.88);
-  --email-btn-bg:   rgba(255, 255, 255, 0.1);
-  --email-btn-text: rgba(255, 255, 255, 0.88);
+  --navbar-text: rgba(255, 255, 255, 0.88);
   color: rgba(255, 255, 255, 0.88);
 }
 
@@ -55,7 +76,8 @@
 }
 
 .darkMode .emailBtn {
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 /* ── VideoIntro mode: hide time + nav, keep email only ── */

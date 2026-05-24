@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
 import { gsap } from '@/lib/gsap'
+
 import profile from '@/data/profile.json'
 import styles from '@/styles/sections/HeroSection.module.css'
 

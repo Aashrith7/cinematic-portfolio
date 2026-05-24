@@ -95,22 +95,31 @@
 
 @media (max-width: 767px) {
   .photo {
-    width: 75%;
-    height: 58vh;
+    width: 72%;
+    height: 55vh;
     top: auto;
     bottom: 0;
+    right: 0;
   }
-  .greeting { top: 5vh; left: 1rem; }
-  .name     { left: 1rem; }
-  .firstName { top: 12vh; }
-  .lastName  { top: 26vh; }
-  .location  { top: 40vh; left: 1rem; }
+  .name      { white-space: normal; left: 1rem; right: 0; }
+  .greeting  { top: 4.5vh; left: 1rem; }
+  .firstName { top: 11vh; }
+  .lastName  { top: 23vh; }
+  .location  { top: 37vh; left: 1rem; }
+  .locationText { font-size: 0.65rem; }
+}
+
+@media (max-width: 374px) {
+  .photo     { width: 80%; height: 50vh; }
+  .firstName { top: 10vh; }
+  .lastName  { top: 21vh; }
+  .location  { top: 34vh; }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
-  .photo { width: 60%; }
-  .greeting { top: 38vh; }
-  .firstName { top: 42vh; }
-  .lastName  { top: 62vh; }
-  .location  { top: 53vh; left: 38%; }
+  .photo     { width: 58%; }
+  .greeting  { top: 36vh; }
+  .firstName { top: 40vh; }
+  .lastName  { top: 60vh; }
+  .location  { top: 51vh; left: 36%; }
 }

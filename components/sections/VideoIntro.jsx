@@ -22,7 +22,7 @@ export default function VideoIntro() {
 
   // muted state drives icon only — DOM muted property is controlled exclusively via ref
   const [muted,    setMuted]    = useState(true)
-  const [playing,  setPlaying]  = useState(false)
+  const [playing,  setPlaying]  = useState(true)
   const [showHint, setShowHint] = useState(true)
 
   // Entrance animation
