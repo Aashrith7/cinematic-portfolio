@@ -21,6 +21,9 @@
   --surface-black: #0a0a0a;
   --surface-amber: #fff7ed;
 
+  /* Status */
+  --status-available: #22c55e;
+
   /* Navbar */
   --navbar-text:    #1a0800;
   --email-btn-bg:   #ffffff;

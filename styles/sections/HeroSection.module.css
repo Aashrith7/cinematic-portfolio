@@ -287,7 +287,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #22c55e;
+  background: var(--status-available);
   flex-shrink: 0;
 }
 
@@ -342,7 +342,7 @@
 
 /* ─── Responsive: Tablet 768–1023px ─────────────────────── */
 @media (min-width: 768px) and (max-width: 1023px) {
-  .content     { left: 3rem; top: 20vh; }
+  .content     { left: 3rem; top: 20vh; max-width: 38vw; }
   .photo       { width: 58%; }
   .cardsCol    { left: 40%; top: 28vh; width: clamp(175px, 17vw, 230px); }
   .socialSidebar { width: 2.25rem; }

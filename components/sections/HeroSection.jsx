@@ -15,6 +15,7 @@ const SOCIAL_ICON_MAP = { GitHub: FaGithub, LinkedIn: FaLinkedinIn, Instagram: F
 const SIDEBAR_LABELS  = ['Instagram', 'GitHub', 'LinkedIn']
 
 function splitTagline(text, highlight) {
+  if (!highlight) return [text]
   const parts = text.split(highlight)
   return parts.reduce((acc, part, i) => {
     acc.push(part)
