@@ -18,7 +18,7 @@ const NAV_ITEMS = [
   { label: 'About',        idx: 2 },
   { label: 'Projects',     idx: 3 },
   { label: 'Experience',   idx: 5 },
-  { label: 'Publications', idx: 6 },
+  // { label: 'Publications', idx: 6 },
   { label: 'Contact',      idx: 7 },
 ]
 
@@ -118,7 +118,7 @@ export default function Navbar() {
         </NavigationMenu>
 
         <a
-          href={`mailto:${profile.email}`}
+          href={`https://mail.google.com/mail/?view=cm&to=${profile.email}`}
           className={`${styles.emailBtn} rounded-full text-xs font-semibold px-5 h-8`}
         >
           Email me
@@ -153,7 +153,7 @@ export default function Navbar() {
             </button>
           ))}
           <a
-            href={`mailto:${profile.email}`}
+            href={`https://mail.google.com/mail/?view=cm&to=${profile.email}`}
             className={styles.mobileMailLink}
             onClick={() => setMenuOpen(false)}
           >

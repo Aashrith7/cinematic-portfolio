@@ -3,20 +3,20 @@
     "tagline": "Portfolio 2026"
   },
   "hero": {
-    "taglineHighlight": "experiences",
-    "freelanceNote": "Available for freelance & full-time opportunities.",
+    "taglineHighlight": "intelligence",
+    "freelanceNote": "Open to hybrid & full-time AI and full-stack roles.",
     "availableLabel": "Available for work",
-    "pills": ["AI Architect", "Full Stack Engineer", "Cinematic Creator", "MERN Stack"],
+    "pills": ["AI Engineer", "LLM Developer", "Full-Stack Engineer", "Agentic AI"],
     "specialistStat": { "value": "AI + Full Stack", "label": "Specialist" }
   },
   "interstitial": {
     "availabilityLabel": "Availability",
     "basedInLabel": "Based in",
-    "statLabels": ["Years\nexperience", "Projects\ndelivered", "Companies\nworked at"]
+    "statLabels": ["Years\nexperience", "AI Projects\nbuilt", "Certifications\nearned"]
   },
   "footer": {
-    "eyebrow": "Available for collaborations",
-    "ctaLines": ["Crafting modern", "digital products", "that feel"],
-    "ctaAccent": "alive."
+    "eyebrow": "Open to AI & full-stack roles",
+    "ctaLines": ["Building intelligent", "systems that", "actually"],
+    "ctaAccent": "work."
   }
 }

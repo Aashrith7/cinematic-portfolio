@@ -362,7 +362,7 @@ export default function PublicationsFooterSection() {
         </div>
 
         {/* ── Publication content (right of image) ── */}
-        <div ref={pubContentRef} className={styles.pubContent}>
+        <div ref={pubContentRef} className={styles.pubContent} style={{ display: 'none' }}>
           <span className={styles.watermark} aria-hidden>WRITING</span>
 
           <div className={styles.pubHero}>
@@ -458,7 +458,7 @@ export default function PublicationsFooterSection() {
             </h2>
             <p className={styles.mobileDesc}>{profile.description}</p>
             <div className={styles.mobileCtas}>
-              <a href={`mailto:${profile.email}`} className={styles.mobileTalkBtn}>
+              <a href={'https://mail.google.com/mail/?view=cm&to=${profile.email}'} className={styles.mobileTalkBtn}>
                 Let&apos;s talk <FiArrowUpRight />
               </a>
             </div>
@@ -519,7 +519,7 @@ export default function PublicationsFooterSection() {
                     </span>
                   ))}
                 </div>
-                <a href={`mailto:${profile.email}`} className={styles.footerMail}>
+                <a href={`https://mail.google.com/mail/?view=cm&to=${profile.email}`} className={styles.footerMail}>
                   <FaEnvelope size={12} />
                   {profile.email}
                 </a>
@@ -537,7 +537,7 @@ export default function PublicationsFooterSection() {
                   ))}
                   <span className={styles.ctaAccent}>{content.footer.ctaAccent}</span>
                 </p>
-                <a href={`mailto:${profile.email}`} className={styles.talkBtn}>
+                <a href={`https://mail.google.com/mail/?view=cm&to=${profile.email}`} className={styles.talkBtn}>
                   Let&apos;s talk →
                 </a>
               </div>
@@ -552,7 +552,7 @@ export default function PublicationsFooterSection() {
           <div ref={bottomBarRef} className={styles.bottomBar}>
             <div className={styles.bottomLeft}>
               <div className={styles.monogram}>
-                <span className={styles.monoLetters}>VK</span>
+                <span className={styles.monoLetters}>AR</span>
                 <span className={styles.monoDot} />
               </div>
               <span className={styles.leftDivider} />

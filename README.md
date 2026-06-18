@@ -1,4 +1,4 @@
-# Cinematic Portfolio
+<!-- # Cinematic Portfolio
 
 A high-performance personal portfolio built with Next.js 16, GSAP, Three.js, and CSS Modules. Designed to be forked and used as your own.
 
@@ -94,4 +94,100 @@ MIT. Free to fork, adapt, and use as your own portfolio.
 
 **Vaibhav Khushalani** — Full Stack Engineer & AI Builder
 
-[GitHub](https://github.com/VaibhavKhushalani) &nbsp;|&nbsp; [LinkedIn](https://www.linkedin.com/in/vaibhav-khushalani-760217136) &nbsp;|&nbsp; [Medium](https://medium.com/@vaibhavkhushalani) &nbsp;|&nbsp; [Instagram](https://www.instagram.com/vaibhav.create) &nbsp;|&nbsp; [YouTube](https://www.youtube.com/@vaibhav.create)
+[GitHub](https://github.com/VaibhavKhushalani) &nbsp;|&nbsp; [LinkedIn](https://www.linkedin.com/in/vaibhav-khushalani-760217136) &nbsp;|&nbsp; [Medium](https://medium.com/@vaibhavkhushalani) &nbsp;|&nbsp; [Instagram](https://www.instagram.com/vaibhav.create) &nbsp;|&nbsp; [YouTube](https://www.youtube.com/@vaibhav.create) -->
+
+
+# Cinematic Portfolio — Aashrith Racherla
+
+A high-performance personal portfolio built with Next.js 16, GSAP, Three.js, and CSS Modules.
+
+**Live:** [aashrith-portfolio.vercel.app](https://aashrith-portfolio.vercel.app) &nbsp;|&nbsp; **GitHub:** [Aashrith7/cinematic-portfolio](https://github.com/Aashrith7/cinematic-portfolio)
+
+## Stack
+
+| Layer      | Technology                                       |
+| ---------- | ------------------------------------------------ |
+| Framework  | Next.js 16.2 (App Router, React Compiler)        |
+| Animations | GSAP 3 + Three.js                                |
+| Styling    | CSS Modules + Tailwind v4 (tokens only)          |
+| Icons      | react-icons                                      |
+| Fonts      | Geist, Baloo 2, Dancing Script (via next/font)   |
+
+## Getting Started
+
+```bash
+git clone https://github.com/Aashrith7/cinematic-portfolio.git
+cd cinematic-portfolio
+npm install
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000).
+
+To build for production:
+
+```bash
+npm run build
+npm start
+```
+
+## About
+
+Built by **Aashrith Racherla** — AI & Full-Stack Engineer specializing in LLM development, agentic AI systems, and scalable web applications. MS Computer Science from California State University, Long Beach.
+
+**Key Projects:**
+- AI-Powered Document Q&A Chatbot (LangChain, FAISS, GPT-3.5-Turbo, Streamlit)
+- Text-to-SQL AI Chat Interface (LangChain, GPT-4, Mistral AI, MySQL, Streamlit)
+- AI-Driven Resume Tailoring Assistant (CrewAI, LangChain, GPT-4, SerperDev)
+
+**Tech Stack:** LangChain · CrewAI · OpenAI GPT-4 · Mistral AI · Python · React · FastAPI · AWS · FAISS · MySQL · MongoDB
+
+## Customization
+
+All personal information lives in `data/profile.json`:
+
+| Field            | What it controls                                    |
+| ---------------- | --------------------------------------------------- |
+| `name`           | Your full name, shown across all sections           |
+| `email`          | Contact email used in footer and CTA buttons        |
+| `tagline`        | One-line professional tagline shown in the hero     |
+| `description`    | Short description shown in footer and meta tags     |
+| `roles`          | Your role title and detailed specializations        |
+| `location`       | Country and availability                            |
+| `bio`            | Long-form bio shown in the About section            |
+| `stats`          | Key numbers: years of experience, projects, etc.    |
+| `skills`         | Skills shown in the scrolling marquee               |
+| `experience`     | Work history with company, role, bullets, and stack |
+| `projects`       | Project cards with title, description, and links    |
+| `socials`        | Social profile links (GitHub, LinkedIn, etc.)       |
+
+Website copy lives in `data/content.json`. Colors can be updated in `app/globals.css` under `:root`.
+
+## Assets
+
+| File                   | Used in                    |
+| ---------------------- | -------------------------- |
+| `about-me.mp4`         | Video Intro                |
+| `hero.png`             | Hero Section               |
+| `about.webp`           | About Section + OG Image   |
+| `work-experience.webp` | Work Experience Section    |
+| `footer.png`           | Footer Section             |
+| `footer-mobile.webp`   | Footer Section (mobile)    |
+| `footer-video.mp4`     | Footer Section (desktop)   |
+| `project-*.png`        | Projects Section           |
+
+## Deployment
+
+Connect the repository to [Vercel](https://vercel.com) — deploys automatically on every push.
+
+```bash
+npm i -g vercel
+vercel
+```
+
+
+## Author
+
+**Aashrith Racherla** — AI & Full-Stack Engineer
+
+[GitHub](https://github.com/Aashrith7) &nbsp;|&nbsp; [LinkedIn](https://linkedin.com/in/aashrith-r/)
