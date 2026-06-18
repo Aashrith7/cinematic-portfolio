@@ -250,7 +250,7 @@ export default function Image() {
             letterSpacing: 2,
           }}
         >
-          aashrith-portfolio.vercel.app
+          aashrith-racherla-portfolio.vercel.app
         </div>
       </div>
     ),

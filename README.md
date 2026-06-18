@@ -101,7 +101,7 @@ MIT. Free to fork, adapt, and use as your own portfolio.
 
 A high-performance personal portfolio built with Next.js 16, GSAP, Three.js, and CSS Modules.
 
-**Live:** [aashrith-portfolio.vercel.app](https://aashrith-portfolio.vercel.app) &nbsp;|&nbsp; **GitHub:** [Aashrith7/cinematic-portfolio](https://github.com/Aashrith7/cinematic-portfolio)
+**Live:** [aashrith-racherla-portfolio.vercel.app](https://aashrith-racherla-portfolio.vercel.app/) &nbsp;|&nbsp; **GitHub:** [Aashrith7/cinematic-portfolio](https://github.com/Aashrith7/cinematic-portfolio)
 
 ## Stack
 
