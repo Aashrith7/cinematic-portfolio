@@ -250,7 +250,7 @@ export default function Image() {
             letterSpacing: 2,
           }}
         >
-          vaibhav-create.vercel.app
+          aashrith-portfolio.vercel.app
         </div>
       </div>
     ),
