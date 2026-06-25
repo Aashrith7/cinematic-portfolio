@@ -21,6 +21,7 @@ export default function VideoIntro() {
   const roleRef     = useRef(null)
   const scrollRef   = useRef(null)
   const hintRef     = useRef(null)
+  const mutedRef    = useRef(true)
 
   // muted state drives icon only - DOM muted property is controlled exclusively via ref
   const [muted,    setMuted]    = useState(true)
@@ -58,6 +59,7 @@ export default function VideoIntro() {
       const v = videoRef.current
       if (!v) return
       v.muted = false
+      mutedRef.current = false
       setMuted(false)
       dismissHint()
     }
@@ -83,6 +85,30 @@ export default function VideoIntro() {
     return () => clearTimeout(id)
   }, [showHint])
 
+  // Pause and mute video when user scrolls away from first section
+  useEffect(() => {
+    const scroller = document.querySelector('main')
+    if (!scroller) return
+
+    function onScroll() {
+      const v = videoRef.current
+      if (!v) return
+      if (scroller.scrollTop > window.innerHeight * 0.3) {
+        v.pause()
+        v.muted = true
+        setMuted(true)
+        setPlaying(false)
+      } else {
+        v.muted = mutedRef.current
+        setMuted(mutedRef.current)
+        v.play().catch(() => {})
+      }
+    }
+
+    scroller.addEventListener('scroll', onScroll, { passive: true })
+    return () => scroller.removeEventListener('scroll', onScroll)
+  }, [])
+
   function dismissHint() {
     if (!hintRef.current) return
     gsap.to(hintRef.current, {
@@ -106,6 +132,7 @@ export default function VideoIntro() {
     // React never updates `v.muted` on re-renders (known React limitation for video),
     // so the static `muted` attr in JSX does not fight with this.
     v.muted = !v.muted
+    mutedRef.current = v.muted
     setMuted(v.muted)
   }
 

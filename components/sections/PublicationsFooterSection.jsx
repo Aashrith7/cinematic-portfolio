@@ -250,6 +250,7 @@ export default function PublicationsFooterSection() {
       // ── Phase 1: pub text fades out ──────────────────────
       // Mobile: p 0 → 0.25 | Desktop: p 0 → 0.28
       const pubFadeEnd = isMobile ? 0.25 : 0.28
+      // const pubFadeEnd = isMobile ? 0.0 : 0.0
       const pubFade = 1 - Math.max(0, Math.min(1, p / pubFadeEnd))
       gsap.set(pubContentRef.current, { opacity: pubFade, pointerEvents: pubFade > 0.05 ? 'auto' : 'none' })
 
@@ -278,6 +279,7 @@ export default function PublicationsFooterSection() {
 
         // ── Interstitial: fade in after pub, fade out before crossfade ──
         const interIn  = Math.max(0, Math.min(1, (p - 0.25) / 0.15))
+        // const interIn  = Math.max(0, Math.min(1, (p - 1.0) / 0.15))
         const interOut = Math.max(0, Math.min(1, (p - 0.54) / 0.14))
         gsap.set(interstitialRef.current, { opacity: interIn * (1 - interOut), pointerEvents: 'none' })
 
@@ -302,6 +304,7 @@ export default function PublicationsFooterSection() {
       // ── Footer text fades in ──────────────────────────────
       // Mobile: p 0.72 → 0.92 | Desktop: p 0.75 → 1.0
       const footerStart = isMobile ? 0.72 : 0.75
+      // const footerStart = isMobile ? 0.0 : 0.0
       const footerRange = isMobile ? 0.20 : 0.25
       const footerFade = Math.max(0, Math.min(1, (p - footerStart) / footerRange))
       gsap.set(footerContentRef.current, { opacity: footerFade, pointerEvents: footerFade > 0.05 ? 'auto' : 'none' })

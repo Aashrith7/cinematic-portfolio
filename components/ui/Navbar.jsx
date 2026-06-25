@@ -17,7 +17,7 @@ const NAV_ITEMS = [
   { label: 'Home',         idx: 0 },
   { label: 'About',        idx: 2 },
   { label: 'Projects',     idx: 3 },
-  { label: 'Experience',   idx: 5 },
+  { label: 'Experience',   idx: 6 },
   // { label: 'Publications', idx: 6 },
   { label: 'Contact',      idx: 7 },
 ]
@@ -33,16 +33,17 @@ function getIST() {
 }
 
 export default function Navbar() {
-  const [time,    setTime]    = useState('')   // '' on SSR - avoids hydration mismatch
-  const [onIntro, setOnIntro] = useState(true)
-  const [onDark,  setOnDark]  = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [time,      setTime]      = useState('')
+  const [onIntro,   setOnIntro]   = useState(true)
+  const [onDark,    setOnDark]    = useState(false)
+  const [menuOpen,  setMenuOpen]  = useState(false)
+  const [activeIdx, setActiveIdx] = useState(0)
   const headerRef   = useRef(null)
   const lastY       = useRef(0)
   const hidden      = useRef(false)
   const stopTimer   = useRef(null)
 
-  // Live clock - set immediately on mount, then every second
+  // Live clock
   useEffect(() => {
     setTime(getIST())
     const id = setInterval(() => setTime(getIST()), 1000)
@@ -68,6 +69,13 @@ export default function Navbar() {
       setOnIntro(currentY < vh * 0.8)
       setOnDark(sectionIdx >= 3)
 
+      // Find the closest active nav item based on scroll position
+      let closest = NAV_ITEMS[0]
+      for (const item of NAV_ITEMS) {
+        if (sectionIdx >= item.idx) closest = item
+      }
+      setActiveIdx(closest.idx)
+
       if (delta > 8 && !hidden.current) {
         gsap.to(headerRef.current, { y: '-100%', duration: 0.35, ease: 'power2.inOut' })
         hidden.current = true
@@ -77,7 +85,6 @@ export default function Navbar() {
 
       lastY.current = currentY
 
-      // Show navbar 400 ms after scrolling stops
       clearTimeout(stopTimer.current)
       stopTimer.current = setTimeout(showNavbar, 400)
     }
@@ -99,8 +106,9 @@ export default function Navbar() {
             {NAV_ITEMS.map(({ label, idx }) => (
               <NavigationMenuItem key={label}>
                 <NavigationMenuLink
-                  className={styles.navLink}
+                  className={`${styles.navLink} ${activeIdx === idx ? styles.navLinkActive : ''}`}
                   onClick={() => {
+                    setActiveIdx(idx)
                     const scroller = document.querySelector('main')
                     if (scroller) gsap.to(scroller, {
                       scrollTop: idx * window.innerHeight,
@@ -138,8 +146,9 @@ export default function Navbar() {
           {NAV_ITEMS.map(({ label, idx }) => (
             <button
               key={label}
-              className={styles.mobileNavLink}
+              className={`${styles.mobileNavLink} ${activeIdx === idx ? styles.navLinkActive : ''}`}
               onClick={() => {
+                setActiveIdx(idx)
                 const scroller = document.querySelector('main')
                 if (scroller) gsap.to(scroller, {
                   scrollTop: idx * window.innerHeight,
