@@ -245,7 +245,8 @@ export default function PublicationsFooterSection() {
       }
 
       // 300vh/svh wrapper → 2 viewports of scroll travel (same for mobile + desktop)
-      const p = Math.max(0, Math.min(1, dist / (2 * vh)))
+      const p = Math.max(0, Math.min(1,0.5 + (dist / (2 * vh))))
+      // const p = Math.max(0, Math.min(1, 0.33 + (dist / (2 * vh)) * 0.67))
 
       // ── Phase 1: pub text fades out ──────────────────────
       // Mobile: p 0 → 0.25 | Desktop: p 0 → 0.28
